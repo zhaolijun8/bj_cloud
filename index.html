@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="zh-cmn-Hans">
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-title" content="听听FM" />
+    <meta name="apple-mobile-web-app-statue-bar-style" content=""/> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">   
+    <meta name="keywords" content="广播,电台,网络电台,网络收音机,FM,播客"/>
+    <meta name="description" content="听听FM是一款音频分享与互动的网络电台，汇聚全球2000多家电台直播节目、海量音频节目和个性化原创播客，涵盖新闻，资讯，音乐，相 声，小说等大量有声资源。"/>
+    <link rel="icon" href="http://m.tingtingfm.com/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-startup-image" href=""><!--ios启动图-->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://m.tingtingfm.com/images/touch-icon-iphone.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://m.tingtingfm.com/images/touch-icon-ipad.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://m.tingtingfm.com/images/touch-icon-iphone4.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://m.tingtingfm.com/images/apple-touch-icon-ipad3-144.png" />
+    <link rel="stylesheet" href="../css/layout.css?v={{$web_config.static_version}}"/>     
+    <title>听听FM，最专业的网络电台，海量音频节目任你听！</title>
+    <link rel="stylesheet" type="text/css" href="css/activity.css">     
+</head>
+<body class="bodylottery">
+	
+    <div class="viewport">
+ 		<!-- 头部 -->
+        <header>
+            <a class="backto" href="/2015zb"><span>返回</span></a>
+            <h1 class="lc-p">抽奖</h1>
+        </header> 
+        <section class="loterybox"> 
+            <section class="loterynew signbm-box">
+            	<div class="lotery-top">
+                    <!-- 中奖记录 -->
+                    <div class="lucky-draw" style="display:none;">
+                		<span class="lotn-name">梦想的高声吟唱</span>
+                		<span class="lotn-number">您还有<em id="coud_num">2</em>次抽奖机会</span>
+                    </div>
+                    <!-- 绑定 -->
+                    <div class="lotery-bind" style="display:none;">
+                        <a href="#" class="bind-a">绑定</a>
+                        <span class="bind-name">梦想的高声吟唱</span>
+                    </div>
+                    <!-- 打开客户端 -->
+                    <div class="lotery-app" style="display:none;">
+                        <a href="#" class="open-app">打开听听FM</a>                    
+                    </div>
+                    <!-- 登录 -->
+                    <div class="lotery-login">
+                        <a href="#" class="login-a">登录</a>
+                    </div>
+            		 <a class="lotn-history">中奖记录</a>
+            	</div>
+            	<div class="lotery-quar">
+            		<div class="lotery-san"></div>
+                    <div class="loteryqq" id="loteryqq"></div>
+                    <a id="plateBtn" href="javascript:" title="开始抽奖" class="lotery-zzen">开始抽奖</a>
+            	</div>
+            </section>
+            <section>
+            	<div class="nlotery-p">
+            		<h2>活动说明</h2>
+            		<div class="loterymsg-detail">
+            			<ol class="decimal">
+            				<li>活动时间：2015年8月1日至2015年10月</li>
+            				<li>每签到一次，就有一次抽奖机会，每天抽奖次数不限，机会用完为止</li>
+            				<li>抽中实物奖品，客服将在3天内联系您，并在7天内邮寄</li>
+            				<li>六等奖为虚拟奖品，抽中后即可兑换或使用，活动结束后，听听FM不再保存中奖信息，请及时保存、兑换或使用</li>
+            			</ol>
+            		</div>
+
+            	</div>
+            	<div class="nlotery-p">
+            		<h2>中奖公告</h2>
+    	        	<div class="loterymsg-detail winPlist">
+    	        		<ul>
+    	        			<li><span class="wp-01">董小军</span><span class="wp-02">一等奖</span><span class="wp-03">iPhone6 Plus</span></li>
+    	        			<li><span class="wp-01">董小军</span><span class="wp-02">一等奖</span><span class="wp-03">iPhone6 Plus</span></li>
+    	        		</ul>
+    	        	</div>
+    	        </div>
+            </section>
+            <div id="result">
+                <div id="resultTxt" class="lotterlayer">
+                    <!-- <div class="newwinone">恭喜你中了 <em>四等奖</em></div> -->
+                </div>
+                <div id="newresultbg"></div>
+                <!-- <a title="关闭" href="javascript:" id="resultBtn">关闭</a> -->
+            </div>                  
+        </section>       
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.rotate.min.js"></script>
+    <script>
+    $(function(){
+        var $plateBtn = $('#plateBtn');
+        var $loteryqq = $('#loteryqq');
+        var $result = $('#result');
+        var $resultbg = $('#newresultbg');
+        var $resultTxt = $('#resultTxt');
+        var $resultBtn = $('#resultBtn');
+        var $coldnum = $('#coud_num').text();
+
+        $plateBtn.click(function(){
+            -- $coldnum;
+            $('#coud_num').text($coldnum);
+            var data = [0, 1, 2, 3, 4, 5, 6, 7,8];
+            data = data[Math.floor(Math.random()*data.length)];
+            switch(data){
+                case 1: 
+                // 特等奖：iphone6
+                    rotateFunc(1,0,'<div class="winTips">获得了一等奖<em>inphone6 Plus</em></div>');
+                    break;
+                case 2: 
+                // 一等奖：apple watch
+                    rotateFunc(2,313,'<div class="winTips">恭喜你中了 <em>二等奖</em></div>');
+                    break;
+                case 3:
+                // 二等奖：zuk手机
+                    rotateFunc(3,273,'<div class="winTips">恭喜你中了 <em>三等奖</em>'); 
+                    break;
+                case 4: 
+                // 三等奖：Android pad
+                    rotateFunc(4,228,'<div class="winTips">恭喜你中了 <em>四等奖</em>');
+                    break;
+                case 5: 
+                // 四等奖：果壳智能音箱
+                    rotateFunc(5,185,'<div class="winTips">恭喜你中了 <em>五等奖</em>');
+                    break;
+                case 6: 
+                // 五等奖：无忧我方迷你音响
+                    rotateFunc(6,140,'<div class="winTips">恭喜你中了 <em>六等奖</em>');
+                    break;
+                case 7: 
+                // 六等奖：代金券
+                    rotateFunc(7,89,'<div class="winTips">恭喜你中了 <em>七等奖</em>');
+                    break;               
+                default:
+                // 再接再厉
+                    rotateFunc(0,44,'<div class="sorryTips">没有抽到奖品，<span>再试试手气吧！</span></div>');
+            }
+        });
+        if($coldnum < 0){
+            // 很遗憾，没有抽奖机会了
+            $result.show().prepend('<div class="nochangeTips"></div>');
+            $resultbg.show();          
+
+        }
+
+        var rotateFunc = function(awards,angle,text){  //awards:奖项，angle:奖项对应的角度
+            $loteryqq.stopRotate();
+            $loteryqq.rotate({
+                angle: 0,
+                duration: 5000,
+                animateTo: angle + 1440,  //angle是图片上各奖项对应的角度，1440是让指针固定旋转4圈
+                callback: function(){
+                    $resultTxt.html(text);
+                    $result.show();
+                    $resultbg.show();
+                }
+            });
+        };
+
+          $("#resultbg").click(function(){
+            $resultbg.hide();            
+        })
+    });
+    </script>    
+</body>
+</html>
